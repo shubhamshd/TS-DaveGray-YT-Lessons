@@ -36,3 +36,35 @@ enum Status {
 }
 
 let myStatus = Status['Active']
+
+// function types/interface
+type mathFunction = (a: number, b: number) => number
+
+// // interface for function
+// interface mathFunction {
+//   (a: number, b: number): number
+// }
+
+let addFunction: mathFunction = (a,b) => a+b
+
+// optional params
+const addAll = (a: number, b: number, c?:number) => a + b + (c ?? 0)
+addAll(1,2,3)
+addAll(1,2)
+
+// rest params -> ...varName is used to address rest of params in argument list
+const total = (a: number, ...restOfNums: number[]): number => a + restOfNums.reduce((prev, curr) => prev + curr)
+total(1,2,3,4)
+total(1)
+
+// never return type => if function throws an error or if it never returns any value as it runs forever
+const neverReturn = () => {
+  throw new Error('not an error')
+}
+
+// use of return type
+const numOrString = (a: stringOrNumber): string => {
+  if (typeof a === 'string') return 'string'
+  else if (typeof a === 'number') return 'number'
+  return neverReturn()
+}
