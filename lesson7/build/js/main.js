@@ -20,3 +20,14 @@ const newStudent = {
 // now if we access the property that doesn't exist, ts wont complain because it thinks that prop may exist in future as a result of index sig
 console.log(newStudent.name);
 console.log(newStudent.test); // no error here, it will give undefined
+const student = {
+    name: 'shubham',
+    gpa: 8
+};
+const loopThroughStudent = (student) => {
+    for (const props in student) {
+        // console.log(`Student ${prop} is ${student[prop]}`)  // this gives error without index sig
+        console.log(`Student ${props} is ${student[props]}`); // this works
+    }
+};
+loopThroughStudent(student);

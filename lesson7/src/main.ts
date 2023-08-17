@@ -50,3 +50,26 @@ const newStudent: Student = {
 
 console.log(newStudent.name)  
 console.log(newStudent.test)  // no error here, it will give undefined
+
+//////////////////////////////////////////////////////////
+
+// now we'll look at an example to access the prop dynamically without using index signature
+
+interface StudentWithoutIndexSig {
+  name: string,
+  gpa: number
+}
+
+const student: StudentWithoutIndexSig = {
+  name: 'shubham',
+  gpa: 8
+}
+
+const loopThroughStudent = (student: StudentWithoutIndexSig) => {
+  for (const props in student){
+    // console.log(`Student ${prop} is ${student[prop]}`)  // this gives error without index sig
+    console.log(`Student ${props} is ${student[props as keyof StudentWithoutIndexSig]}`)  // this works
+  }
+}
+
+loopThroughStudent(student)
