@@ -28,3 +28,25 @@ const transactionObj1: TransactionObjIndexSignature = {
 }
 
 console.log(transactionObj1[prop])  // no issue here as we have index signature defined in interface
+
+///////////////////////////////////////////////////////
+
+// now lets looks at drawback
+
+interface Student {
+  readonly [index: string]: string | number | number[] | undefined
+  name: string,
+  gpa: number,
+  classes?: number[]
+}
+
+const newStudent: Student = {
+  name: 'shubham',
+  gpa: 9,
+  classes: [100, 200]
+}
+
+// now if we access the property that doesn't exist, ts wont complain because it thinks that prop may exist in future as a result of index sig
+
+console.log(newStudent.name)  
+console.log(newStudent.test)  // no error here, it will give undefined
