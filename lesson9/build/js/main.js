@@ -1,5 +1,14 @@
 "use strict";
 // utility types
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 const updateAssignment = (assign, propsToUpdate) => {
     // The line below will result in an error.
     // You're trying to include an object 'propsToUpdate' within another object 'assign'.
@@ -43,3 +52,22 @@ const assignPrev = {
     studentId: 5,
     title: 'sem 3 project'
 };
+////////// return type
+const createNewAssign = (title, grade) => {
+    return { title, grade };
+};
+const tsAssign = createNewAssign('title', 90);
+const fetchUsers = () => __awaiter(void 0, void 0, void 0, function* () {
+    const data = yield fetch('dummyUrl');
+    // .then(res => {
+    //   return res.json()
+    // })
+    // .catch(err => {
+    //   if(err instanceof Error){
+    //     console.log(err)
+    //   }
+    // })
+    return yield data.json();
+});
+fetchUsers().then(users => console.log(users));
+// export {}

@@ -85,3 +85,41 @@ type HighGrades = Extract<Grades,  'A' | 'B'>
 
 type AllGrades = 'A' | 'B' | 'C' | 'D' | null | undefined
 type NotNullGrades = NonNullable<AllGrades>
+
+////////// return type
+
+const createNewAssign = (title: string, grade: number) => {
+  return { title, grade }
+}
+
+type NewAssign = ReturnType<typeof createNewAssign>
+
+const tsAssign: NewAssign = createNewAssign('title', 90)
+
+
+//////////// awaited
+
+interface User {
+  name: string,
+  email: string
+}
+const fetchUsers = async(): Promise<User[]> => {
+  const data = await fetch('dummyUrl')
+  // .then(res => {
+  //   return res.json()
+  // })
+  // .catch(err => {
+  //   if(err instanceof Error){
+  //     console.log(err)
+  //   }
+  // })
+  return await data.json()
+}
+
+type fetchUserReturnType = ReturnType<typeof fetchUsers>
+
+type fetchUserAwaitedReturnType = Awaited<ReturnType<typeof fetchUsers>>
+
+fetchUsers().then(users => console.log(users))
+
+// export {}
